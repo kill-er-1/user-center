@@ -1,12 +1,20 @@
 spring:
   application:
-    name:
-      user-center
+    name: user-center
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: {DB_URL}
-    username: {DB_NAME}
-    password: {DB_PASSWORD}
-
+    url: jdbc:mysql://localhost:3306/user-center?serverTimezone=Asia/Shanghai&characterEncoding=utf8&useSSL=false&allowPublicKeyRetrieval=true
+  profiles:
+    active: local
 server:
   port: 8080
+  servlet:
+    context-path: /api
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: false
+  global-config:
+    db-config:
+      logic-delete-field: isDelete
+      logic-not-delete-value: 0
+      logic-delete-value: 1
